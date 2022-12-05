@@ -8,13 +8,16 @@ regex = r'^[.,/"=+_?!*%~\'{}\[\]:().,;]+$'
 def preprocessImageForPrediction(img, imgSize):
     # create target image and copy sample image into it
     (wt, ht) = imgSize
-    (h, w) = img.shape
+    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    img=gray_image
+    (h,w)=img.shape
+    
     fx = w / wt
     fy = h / ht
     f = max(fx, fy)
-    newSize = (max(min(wt, int(w / f)), 1), max(min(ht, int(h / f)),
-                                                1))  # scale according to f (result at least 1 and at most wt or ht)
+    newSize = (max(min(wt, int(w / f)), 1), max(min(ht, int(h / f)),1))  # scale according to f (result at least 1 and at most wt or ht)
     img = cv2.resize(img, newSize)
+  
     target = np.ones([ht, wt]) * 255
     target[0:newSize[1], 0:newSize[0]] = img
 
