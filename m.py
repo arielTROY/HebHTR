@@ -17,7 +17,7 @@ def home_page():
 
 @app.route('/detect', methods=['GET'])
 def detect():
-    im = request.args.get('img')
+    img = request.args.get('img')
     image = HebHTR(im)
 
 # Infer words from image.
