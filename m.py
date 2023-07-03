@@ -32,14 +32,12 @@ def detect():
     htr = HebHTR(filename)
     text = htr.imgToWord(iterations=5, decoder_type='best_path')
 
-    txt = str(text)
-    final = txt[2:]
-    print(final)
+    print(text)
 
     # Remove the temporary image file
     os.remove(filename)
 
-    data_set = {'page': 'home', 'recognized': final}
+    data_set = {'page': 'home', 'recognized': text}
     json_dump = json.dumps(data_set)
     return json_dump
 
