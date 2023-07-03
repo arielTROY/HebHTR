@@ -17,11 +17,11 @@ def home_page():
 
 @app.route('/detect', methods=['GET'])
 def detect():
-    img = request.args.get('img')
+    im = request.args.get('img')
     image = HebHTR(im)
 
 # Infer words from image.
-    text = img.imgToWord(iterations=5, decoder_type='best_path')
+    text = image.imgToWord(iterations=5, decoder_type='best_path')
     txt=str(text)
     txt=txt[2:]
     print(txt)    
