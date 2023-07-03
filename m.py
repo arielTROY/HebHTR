@@ -30,7 +30,7 @@ def detect():
 
     # Create HebHTR object and process the saved image
     htr = HebHTR(filename)
-    text = htr.imgToWord(iterations=5, decoder_type='best_path')
+    text = htr.imgToWord(iterations=5, decoder_type='word_beam')
 
     print(text)
 
