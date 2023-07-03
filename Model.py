@@ -19,6 +19,7 @@ class Model:
 
     def __init__(self, charList, decoderType=DecoderType.BestPath,
                  mustRestore=False, dump=False):
+        tf.reset_default_graph()
         self.dump = dump
         self.charList = charList
         self.decoderType = decoderType
