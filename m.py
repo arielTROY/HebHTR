@@ -33,13 +33,13 @@ def detect():
     text = htr.imgToWord(iterations=5, decoder_type='best_path')
 
     txt = str(text)
-    txt = txt[2:]
-    print(txt)
+    final = txt[2:]
+    print(final)
 
     # Remove the temporary image file
     os.remove(filename)
 
-    data_set = {'page': 'home', 'recognized': txt}
+    data_set = {'page': 'home', 'recognized': final}
     json_dump = json.dumps(data_set)
     return json_dump
 
