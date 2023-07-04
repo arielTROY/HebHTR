@@ -146,6 +146,9 @@ class Model:
             # Construct the path to the TFWordBeamSearch.so file
             so_file_path = os.path.join(script_directory, 'TFWordBeamSearch.so')
             
+            isFile = os.path.isfile(so_file_path)
+
+            print(isFile)
             print(so_file_path)
 
             word_beam_search_module = tf.load_op_library(so_file_path)
