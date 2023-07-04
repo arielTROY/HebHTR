@@ -1,5 +1,7 @@
 import numpy as np
 import tensorflow as tf
+import os
+
 tf.compat.v1.disable_eager_execution()
 '''
 Handwritten text recognition model written by Harald Scheidl:
@@ -135,7 +137,18 @@ class Model:
                                                     sequence_length=self.seqLen)
         elif self.decoderType == DecoderType.WordBeamSearch:
             # import compiled word beam search operation (see https://github.com/githubharald/CTCWordBeamSearch)
-            word_beam_search_module = tf.load_op_library('./TFWordBeamSearch.so')
+            # Get the path of the current script
+            script_path = os.path.abspath(__file__)
+            
+            # Get the directory containing the script
+            script_directory = os.path.dirname(script_path)
+            
+            # Construct the path to the TFWordBeamSearch.so file
+            so_file_path = os.path.join(script_directory, 'TFWordBeamSearch.so')
+            
+            print(so_file_path)
+
+            word_beam_search_module = tf.load_op_library(so_file_path)
 
             # prepare information about language (dictionary, characters in dataset, characters forming words)
             chars = str().join(self.charList)
